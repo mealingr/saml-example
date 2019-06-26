@@ -1,15 +1,16 @@
 package ca.redtoad;
 
+import java.io.IOException;
+
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import javax.servlet.http.HttpSession;
 
-import org.pac4j.core.profile.ProfileManager;
 import org.pac4j.core.context.J2EContext;
 import org.pac4j.core.context.WebContext;
+import org.pac4j.core.profile.ProfileManager;
 import org.pac4j.saml.client.SAML2Client;
 import org.pac4j.saml.credentials.SAML2Credentials;
 import org.pac4j.saml.profile.SAML2Profile;

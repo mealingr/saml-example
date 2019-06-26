@@ -8,7 +8,7 @@ public class SAML2ClientBuilder {
 
     public SAML2Client build() {
         SAML2Configuration config = new SAML2Configuration();
-        config.setIdentityProviderMetadataResourceUrl(getClass().getResource("/idp-metadata.xml").toString());
+        config.setIdentityProviderMetadataResourceUrl(getClass().getResource("/samling-idp.xml").toString());
         config.setSpLogoutRequestBindingType(SAMLConstants.SAML2_REDIRECT_BINDING_URI);
 
         // keytool -genkey -keyalg RSA -alias saml -keypass changeit -keystore trust.keystore -storepass changeit
@@ -16,6 +16,7 @@ public class SAML2ClientBuilder {
         config.setKeystorePassword("changeit");
         config.setPrivateKeyPassword("changeit");
         config.setKeystoreAlias("saml");
+        config.setAuthnRequestBindingType("urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect");
 
         SAML2Client saml2Client = new SAML2Client(config);
         saml2Client.setName("SAMLExample");
