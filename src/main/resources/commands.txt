@@ -1,0 +1,16 @@
+docker stop testsamlidp_idp
+docker rm testsamlidp_idp
+docker run --name=testsamlidp_idp -p 8080:8080 -p 8443:8443 -e SIMPLESAMLPHP_SP_ENTITY_ID=sp_entity_id -e SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE=http://localhost:8081/callback -e SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE="http://localhost:8081/callback?logoutendpoint=true" -d kristophjunge/test-saml-idp
+(or docker start testsamlidp_idp if it already exists)
+
+// By default this has two users
+1. user1, user1pass, group1, user1@example.com
+2. user2, user2pass, group2, user2@example.com
+
+// To logout via the IdP first
+http://localhost:8080/simplesaml/saml2/idp/SingleLogoutService.php?ReturnTo=<URL to return to after logout>
+e.g.
+http://localhost:8080/simplesaml/saml2/idp/SingleLogoutService.php?ReturnTo=null
+
+// To see the SimpleSAMLphp web interface
+http://localhost:8080/simplesaml (admin password is "secret")
