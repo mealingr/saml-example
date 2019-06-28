@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2016 Red Hat, Inc. and/or its affiliates
+  ~ and other contributors as indicated by the @author tags.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<EntitiesDescriptor Name="urn:keycloak" xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+					xmlns:dsig="http://www.w3.org/2000/09/xmldsig#">
+	<EntityDescriptor entityID="http://localhost:8080/auth/realms/master">
+		<IDPSSODescriptor WantAuthnRequestsSigned="true"
+			protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+                        <KeyDescriptor use="signing">
+                          <dsig:KeyInfo>
+                            <dsig:KeyName>EMeadowx3c19ukgaKDJauncP49XbkwCP100lpc3sDbI</dsig:KeyName>
+                            <dsig:X509Data>
+                              <dsig:X509Certificate>MIICmzCCAYMCBgFrmiAlvzANBgkqhkiG9w0BAQsFADARMQ8wDQYDVQQDDAZtYXN0ZXIwHhcNMTkwNjI3MTgwNzA2WhcNMjkwNjI3MTgwODQ2WjARMQ8wDQYDVQQDDAZtYXN0ZXIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCbEd2T5foj5vf9ldGcoiYLQ2Bm8L6XA1J3ztSBG6HWCHkPE+rw5fSVOLbXkPNVPh7p464VAB7FLYuyUxdEew6J43567oJQrY13X1yhNGoywWneJnrAVEldqubRZ70fQg63T8VaU7SMxyONp6V/Zfni4/a19fZcv8ahnt18QkA5dfN+vYpPDd7871gfoMtoKFLsJsrKQZzjyvYhXBF7Gvccm88C/zod3v2LTE/E8vfS/SV4+PvDF/3rrCnC1EW5WMkLgVQ0zJaYSgzIsrOUPXvQQ/9AWiZWKpnJ3iXgZOztgb9BdXqyVHCmqxtpupOP1ZMHsemcwmNj0qq3Lz2iGiyhAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAIr8YiFsvp8mJOkt3bkzwz5ty1Uoizu65393eiD64lb6C3hRN4+qUeE13QauukH23Jp5eS4/6GTh5IRuM4e+Ny3FiFArsKdba/CbHXKCeOV1Uw01g8cfRviwbCIV4ixdhH7Vdk4MjPWB12Hk687qDuhmll5LKugSL5VohfJKxNvzt6fL4iDGe7QDvh8B0SKvpd5KRIchlsKn5f8G+zYHE/fFmYQ4Cumv9DmKo9k1FvSaTB3s/2ljs4GI74RWSz1CT3MjJxSomJHxrpZRQCrMBjJiXAmQzDx6XmPJXowaFFAZcHk8dMpxawVS2+URAG5amoDeLDwZTKXgXt6vgplos2U=</dsig:X509Certificate>
+                            </dsig:X509Data>
+                          </dsig:KeyInfo>
+                        </KeyDescriptor>
+
+			<SingleLogoutService
+					Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+					Location="http://localhost:8080/auth/realms/master/protocol/saml" />
+			<SingleLogoutService
+					Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+					Location="http://localhost:8080/auth/realms/master/protocol/saml" />
+			<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+			<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+			<NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>
+			<NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</NameIDFormat>
+			<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+				Location="http://localhost:8080/auth/realms/master/protocol/saml" />
+			<SingleSignOnService
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+				Location="http://localhost:8080/auth/realms/master/protocol/saml" />
+			<SingleSignOnService
+				Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
+				Location="http://localhost:8080/auth/realms/master/protocol/saml" />
+		</IDPSSODescriptor>
+	</EntityDescriptor>
+</EntitiesDescriptor>
