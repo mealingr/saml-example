@@ -1,0 +1,40 @@
+http://docs.oasis-open.org/security/saml/Post2.0/saml-ecp/v2.0/cs01/saml-ecp-v2.0-cs01.pdf
+http://docs.oasis-open.org/security/saml/v2.0/saml-profiles-2.0-os.pdf
+http://idmoim.blogspot.com/2015/02/how-to-develop-saml-ecp-custom-client.html
+
+git clone https://github.com/sonatype-nexus-community/cs-auth-proxy.git
+bin/create-iq-volume.sh license_file (via powershell for windows)
+docker-compose build
+docker volume create --name=iq-server-data
+docker-compose up -d
+docker stop cs-auth-proxy_keycloak_1
+docker start cs-auth-proxy_keycloak_1
+
+// Keycloak admin console login
+http://localhost:8080
+http://localhost:8080/auth/realms/master/protocol/openid-connect/auth?client_id=security-admin-console&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauth%2Fadmin%2Fmaster%2Fconsole%2F&state=ac98de5a-21b0-4b5c-8ad4-8bcb75021c4d&response_mode=fragment&response_type=code&scope=openid&nonce=131066e2-9d94-4702-84ba-b029b440325d
+admin
+admin123
+
+// Without registering with the IdP we get "Unknown login requester"
+// Keycloak needs the service provider (client) metadata to recognise it
+// you can either import the service provider metadata xml file
+// or input the relevant data directly e.g.
+Client ID =  sp_opensaml_entity_id
+Name ID Format = transient
+Valid Redirect URIs = http://localhost:8081/callback
+Assertion Consumer Service POST Binding URL = http://localhost:8081/callback
+Logout Service POST Binding URL = http://localhost:8081/callback?logoutendpoint=true
+Logout Service Redirect Binding URL = http://localhost:8081/callback?logoutendpoint=true
+Encrypt Assertions = ON
+Sign Assertions = ON
+// (note that in the initial setup screen the "Client SAML Endpoint" becomes the "Master SAML Processing URL",
+// this is different from the "Valid Redirect URIs", which is what should be set)
+
+// Keycloak user attributes
+// user attributes can be added in Keycloak in key-value pairs, but to be added to a SAML attribute statement you need
+// to create an AttributeStatement mapper for user attributes specifying the user attribute name and the SAML attribute
+// name that it will map to
+
+// SP Metdata (added endpoint)
+http://localhost:8081/metadata
